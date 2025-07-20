@@ -1,4 +1,4 @@
-const Ejercicio = require('../models/Ejercicio');
+const Ejercicio = require('../models/ejercicio');
 const Usuario = require('../models/Usuario');
 
 // Crear nuevo ejercicio
