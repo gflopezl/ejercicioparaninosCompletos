@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'; // 👁️ Iconos
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 function Registro() {
   const [formData, setFormData] = useState({
@@ -9,10 +9,10 @@ function Registro() {
     fechaNacimiento: '',
     correo: '',
     contraseña: '',
-    rol: 'niño'
+    rol: 'niño' // Asegúrate de que este valor esté permitido en tu backend
   });
 
-  const [mostrarClave, setMostrarClave] = useState(false); // ← Estado para mostrar/ocultar contraseña
+  const [mostrarClave, setMostrarClave] = useState(false);
   const [mensaje, setMensaje] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -30,9 +30,9 @@ function Registro() {
     setMensaje('');
 
     try {
-      const response = await axios.post('http://localhost:3000/api/usuarios/registro', formData);
+      const response = await axios.post('http://localhost:5000/api/usuarios/registro', formData); // <-- usa el puerto de tu backend
       setMensaje(response.data.mensaje);
-      setTimeout(() => navigate('/login'), 1500);
+      setTimeout(() => navigate('/login'), 1500); // Redirige después de registrar
     } catch (err) {
       setError(err.response?.data?.error || 'Error al registrar');
     }
@@ -71,7 +71,6 @@ function Registro() {
             required
           />
 
-          {/* Campo de contraseña con ícono 👁️ */}
           <div className="relative">
             <input
               type={mostrarClave ? 'text' : 'password'}

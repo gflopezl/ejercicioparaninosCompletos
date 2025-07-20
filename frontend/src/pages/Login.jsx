@@ -9,7 +9,8 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const backendUrl = 'http://localhost:3000';
+  // ✅ Usa variable de entorno para compatibilidad local y Vercel
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -98,9 +99,6 @@ function Login() {
 
         <Link to="/registro" className="text-sm text-blue-800 hover:underline mb-1">
           ¿No tienes cuenta? Regístrate
-        </Link>
-        <Link to="/recuperarclave" className="text-sm text-blue-800 hover:underline">
-          ¿Olvidaste tu contraseña?
         </Link>
       </form>
     </div>
