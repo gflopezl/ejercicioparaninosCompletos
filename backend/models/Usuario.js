@@ -27,7 +27,7 @@ const usuarioSchema = new mongoose.Schema({
   },
   rol: {
     type: String,
-    enum: ['usuario', 'admin'],
+    enum: ['usuario', 'admin', 'niño'],
     default: 'usuario' // Si no se especifica, será usuario por defecto
   }
 }, { timestamps: true });
