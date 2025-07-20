@@ -7,7 +7,7 @@ const {
   obtenerEjerciciosPorEdadDesdeToken,
   actualizarEjercicio,
   eliminarEjercicio
-} = require('../Controllers/ejercicioController');
+} = require('../controllers/ejercicioController');
 
 const verificarToken = require('../middleware/authMiddleware');
 
