@@ -15,7 +15,7 @@ const recompensaRoutes = require('./routes/recompensaRoutes');
 const ejercicioPorEdadRoutes = require('./routes/ejercicioPorEdadRoutes');
 const consejoRoutes = require('./routes/consejoRoutes');
 const notificacionRoutes = require('./routes/notificacionRoutes');
-const categoriasRoutes = require('./routes/categoriaRoutes'); // ✅ NOMBRE CORREGIDO
+const categoriasRoutes = require('./routes/categoriaRoutes');
 
 const app = express();
 
@@ -31,7 +31,7 @@ app.use('/api/recompensas', recompensaRoutes);
 app.use('/api/ejercicio-por-edad', ejercicioPorEdadRoutes);
 app.use('/api/consejos', consejoRoutes);
 app.use('/api/notificaciones', notificacionRoutes);
-app.use('/api/categorias', categoriasRoutes); // ✅ USO CORRECTO DEL NOMBRE
+app.use('/api/categorias', categoriasRoutes);
 
 // Ruta base
 app.get('/', (req, res) => {
@@ -48,7 +48,8 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ Conectado a MongoDB Atlas'))
   .catch((error) => console.error('❌ Error de conexión:', error));
 
+// Escuchar el puerto asignado por Railway (obligatorio)
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
 });

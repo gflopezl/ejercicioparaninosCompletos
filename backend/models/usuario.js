@@ -32,4 +32,7 @@ const usuarioSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Usuario', usuarioSchema);
+// Evitar sobreescribir el modelo si ya existe
+const Usuario = mongoose.models.Usuario || mongoose.model('Usuario', usuarioSchema);
+
+module.exports = Usuario;

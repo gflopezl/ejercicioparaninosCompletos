@@ -6,4 +6,4 @@ const ejercicioSchema = new mongoose.Schema({
   repeticiones: { type: Number, required: true }
 });
 
-module.exports = mongoose.model('Ejercicio', ejercicioSchema);
+const Ejercicio = mongoose.models.Ejercicio || mongoose.model('Ejercicio', ejercicioSchema);

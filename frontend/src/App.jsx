@@ -4,6 +4,7 @@ import Registro from './pages/Registro.jsx';
 import Administrador from './pages/Administrador.jsx';
 import PerfilUsuario from './pages/PerfilUsuario.jsx';
 import Ejercicios from './pages/Ejercicios.jsx';
+import SubirEjercicio from './pages/SubirEjercicio';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/perfil" element={<PerfilUsuario />} />
       <Route path="/ejercicios" element={<Ejercicios />} />
       <Route path="/" element={<Login />} />
+      <Route path="/admin/subir-ejercicio" element={<SubirEjercicio />} />
     </Routes>
   );
 }

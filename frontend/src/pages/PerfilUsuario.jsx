@@ -30,8 +30,24 @@ function PerfilUsuario() {
     return () => clearInterval(intervalo);
   }, []);
 
+  // 👉 Función para cerrar sesión
+  const cerrarSesion = () => {
+    // Aquí puedes limpiar localStorage o cookies si estás usando tokens
+    localStorage.clear(); // o localStorage.removeItem('token')
+    navigate('/login'); // Redirige al login
+  };
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-br from-sky-100 to-lime-100 py-10 px-6">
+    <div className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-br from-sky-100 to-lime-100 py-10 px-6 relative">
+      
+      {/* Botón de cerrar sesión */}
+      <button
+        onClick={cerrarSesion}
+        className="absolute top-6 right-6 bg-red-400 hover:bg-red-500 text-white px-4 py-2 rounded-xl shadow font-semibold text-sm transition-transform hover:scale-105"
+      >
+        🔓 Cerrar sesión
+      </button>
+
       <h1 className="text-4xl font-bold text-pink-600 mb-8 drop-shadow">🎉 ¡Hola, pequeño/a deportista!</h1>
 
       <div className="grid grid-cols-2 gap-5 w-full max-w-md">

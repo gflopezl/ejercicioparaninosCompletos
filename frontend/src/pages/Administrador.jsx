@@ -16,8 +16,6 @@ const AdminPanel = () => {
     switch (pestañaActiva) {
       case 'usuarios':
         return <p>👤 Sección de Usuarios</p>;
-      case 'ejercicios':
-        return <p>🏋️ Sección de Ejercicios</p>;
       case 'progresos':
         return <p>📈 Sección de Progresos</p>;
       case 'notificaciones':
@@ -46,22 +44,57 @@ const AdminPanel = () => {
 
       {/* Botones de navegación */}
       <div className="flex flex-wrap justify-center gap-4 mb-8">
-        <button onClick={() => setPestañaActiva('usuarios')} className={`px-4 py-2 rounded-full text-white ${pestañaActiva === 'usuarios' ? 'bg-blue-600' : 'bg-blue-400 hover:bg-blue-500'}`}>
+        <button
+          onClick={() => setPestañaActiva('usuarios')}
+          className={`px-4 py-2 rounded-full text-white ${
+            pestañaActiva === 'usuarios' ? 'bg-blue-600' : 'bg-blue-400 hover:bg-blue-500'
+          }`}
+        >
           👤 Usuarios
         </button>
-        <button onClick={() => setPestañaActiva('ejercicios')} className={`px-4 py-2 rounded-full text-white ${pestañaActiva === 'ejercicios' ? 'bg-green-600' : 'bg-green-400 hover:bg-green-500'}`}>
-          🏋️ Ejercicios
-        </button>
-        <button onClick={() => setPestañaActiva('progresos')} className={`px-4 py-2 rounded-full text-white ${pestañaActiva === 'progresos' ? 'bg-yellow-600' : 'bg-yellow-400 hover:bg-yellow-500'}`}>
+
+        <button
+            onClick={() => navigate('/admin/subir-ejercicio')}
+            className={`px-4 py-2 rounded-full text-white ${
+              pestañaActiva === 'ejercicios' ? 'bg-green-600' : 'bg-green-400 hover:bg-green-500'
+            }`}
+          >
+            🏋️ Ejercicios
+          </button>
+
+        <button
+          onClick={() => setPestañaActiva('progresos')}
+          className={`px-4 py-2 rounded-full text-white ${
+            pestañaActiva === 'progresos' ? 'bg-yellow-600' : 'bg-yellow-400 hover:bg-yellow-500'
+          }`}
+        >
           📈 Progresos
         </button>
-        <button onClick={() => setPestañaActiva('notificaciones')} className={`px-4 py-2 rounded-full text-white ${pestañaActiva === 'notificaciones' ? 'bg-purple-600' : 'bg-purple-400 hover:bg-purple-500'}`}>
+
+        <button
+          onClick={() => setPestañaActiva('notificaciones')}
+          className={`px-4 py-2 rounded-full text-white ${
+            pestañaActiva === 'notificaciones' ? 'bg-purple-600' : 'bg-purple-400 hover:bg-purple-500'
+          }`}
+        >
           🔔 Notificaciones
         </button>
-        <button onClick={() => setPestañaActiva('recompensas')} className={`px-4 py-2 rounded-full text-white ${pestañaActiva === 'recompensas' ? 'bg-pink-600' : 'bg-pink-400 hover:bg-pink-500'}`}>
+
+        <button
+          onClick={() => setPestañaActiva('recompensas')}
+          className={`px-4 py-2 rounded-full text-white ${
+            pestañaActiva === 'recompensas' ? 'bg-pink-600' : 'bg-pink-400 hover:bg-pink-500'
+          }`}
+        >
           🌟 Recompensas
         </button>
-        <button onClick={() => setPestañaActiva('consejos')} className={`px-4 py-2 rounded-full text-white ${pestañaActiva === 'consejos' ? 'bg-indigo-600' : 'bg-indigo-400 hover:bg-indigo-500'}`}>
+
+        <button
+          onClick={() => setPestañaActiva('consejos')}
+          className={`px-4 py-2 rounded-full text-white ${
+            pestañaActiva === 'consejos' ? 'bg-indigo-600' : 'bg-indigo-400 hover:bg-indigo-500'
+          }`}
+        >
           💡 Consejos
         </button>
       </div>
