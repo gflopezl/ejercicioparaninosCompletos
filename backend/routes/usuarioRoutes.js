@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Usuario = require('../models/Usuario'); // modelo mongoose
+const Usuario = require('../models/usuario'); // modelo mongoose
 
 // Obtener todos los usuarios
 router.get('/', async (req, res) => {
