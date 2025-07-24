@@ -17,7 +17,7 @@ import NotificacionesAdmin from './pages/Administrador/NotificacionesAdmin.jsx';
 import CategoriaAdmin from './pages/Administrador/CategoriaAdmin.jsx';
 import RecompensasAdmin from './pages/Administrador/RecompensasAdmin.jsx';
 import ConsejosAdmin from './pages/Administrador/ConsejosAdmin.jsx';
-import EjerciciosPorEdad from './pages/EjerciciosPorEdad';
+import Ejerciciosporedad from './pages/Ejerciciosporedad';
 import Recompensas from './pages/Recompensas.jsx';
 
 
@@ -38,7 +38,7 @@ function App() {
       <Route path="/admin/recompensas" element={<RecompensasAdmin />} />
       <Route path="/admin/consejos" element={<ConsejosAdmin />} />
       <Route path="/ejercicios" element={<EjerciciosPantalla />} />
-      <Route path="/ejercicios-por-edad" element={<EjerciciosPorEdad />} />
+      <Route path="/ejercicios-por-edad" element={<Ejerciciosporedad />} />
       <Route path="/recompensas" element={<Recompensas />} />
       <Route path="/notificaciones" element={<Notificaciones />} />
       <Route path="/consejos" element={<Consejos />} />
