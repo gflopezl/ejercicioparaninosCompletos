@@ -1,0 +1,63 @@
+.progreso-container {
+  padding: 2rem;
+  text-align: center;
+  background-color: #f0f8ff;
+  min-height: 100vh;
+}
+
+.titulo {
+  font-size: 2rem;
+  color: #ff6f61;
+  margin-bottom: 2rem;
+}
+
+.tarjetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.tarjeta {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  width: 250px;
+  text-align: left;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: scale(1.05);
+}
+
+.icono-ejercicio {
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 0.5rem;
+}
+
+.recompensa {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.estrella {
+  color: gold;
+  font-size: 1.5rem;
+}
+
+.medalla {
+  color: #cd7f32;
+  font-size: 1.5rem;
+}
+
+.mensaje-vacio {
+  font-size: 1.2rem;
+  color: #999;
+}
