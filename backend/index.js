@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
-// Middlewares de autenticación (los tienes definidos)
+// Middlewares de autenticación (si los usas más adelante)
 // const verificarToken = require('./middlewares/verificarToken');
 // const verificarAdmin = require('./middlewares/verificarAdmin');
 
@@ -20,11 +20,22 @@ const recompensaRoutes = require('./routes/recompensaRoutes');
 
 const app = express();
 
-// CORS
+// ✅ CORS configurado correctamente
+const allowedOrigins = [
+  'http://localhost:3001', // desarrollo
+  'https://ejercicioparaninos-completos.vercel.app' // producción
+];
+
 app.use(cors({
-  origin: '*',
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: false
+  credentials: true
 }));
 
 // Middleware para parsear JSON
@@ -43,12 +54,11 @@ app.use('/api/notificaciones', notificacionRoutes);
 app.use('/api/categorias', categoriasRoutes);
 app.use('/api/recompensas', recompensaRoutes);
 
-
-
 // Ruta básica de prueba
 app.get('/', (req, res) => {
   res.send('Servidor funcionando correctamente');
 });
+
 app.get('/ping', (req, res) => {
   res.send('pong');
 });
