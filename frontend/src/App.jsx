@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import RutaProtegida from './components/RutaProtegida.jsx';
+import RutaProtegida from './components/rutaprotegida.jsx';
 
 import Login from './pages/Login.jsx';
 import Registro from './pages/Registro.jsx';
