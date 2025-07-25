@@ -22,19 +22,26 @@ function Login() {
         contraseña,
       });
 
-      const { token, usuario } = response.data;
-      const rol = usuario?.rol || '';
+      console.log('Respuesta del backend:', response.data);
 
-      console.log('Rol recibido:', rol);
+      // Según tu respuesta: el token, rol, nombre e id están en response.data directamente
+      const { token, rol, nombre, id } = response.data;
 
+      // Normaliza el rol para evitar problemas con mayúsculas o espacios
+      const rolNormalizado = (rol || '').toLowerCase().trim();
+      console.log('Rol recibido y normalizado:', rolNormalizado);
+
+      // Guarda en localStorage
       localStorage.setItem('token', token);
-      localStorage.setItem('usuarioId', usuario?._id || '');
-      localStorage.setItem('rol', rol);
+      localStorage.setItem('rol', rolNormalizado);
+      localStorage.setItem('usuarioId', id);
+      localStorage.setItem('nombre', nombre);
 
-      if (rol === 'admin') {
-        navigate('/admin');
+      // Redirige según rol
+      if (rolNormalizado === 'admin') {
+        navigate('/administrador');
       } else {
-        navigate('/perfil');
+        navigate('/perfilusuario');
       }
     } catch (error) {
       setError('Correo o clave incorrecta.');

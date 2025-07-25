@@ -41,6 +41,8 @@ const iniciarSesion = async (req, res) => {
     const { correo, contraseña } = req.body;
 
     console.log('🔐 Intento de inicio de sesión con:', correo);
+    console.log('Usuario al iniciar sesión:', usuario);
+
 
     const usuario = await Usuario.findOne({ correo });
     if (!usuario) {
