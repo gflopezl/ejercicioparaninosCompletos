@@ -38,7 +38,7 @@ const RecompensasAdmin = () => {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-green-700">🎖️ Panel de Recompensas</h1>
         <button
-          onClick={() => navigate('/admin')}
+          onClick={() => navigate('/administrador')}
           className="bg-gray-400 text-white px-4 py-2 rounded-full hover:bg-gray-500"
         >
           🔙 Volver al panel

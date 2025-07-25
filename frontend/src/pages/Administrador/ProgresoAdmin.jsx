@@ -105,7 +105,7 @@ function Progreso() {
       </div>
 
       <div className="mt-10 text-center">
-        <button onClick={() => navigate('/admin')} className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded">
+        <button onClick={() => navigate('/administrador')} className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded">
           🔙 Volver al Panel de Administrador
         </button>
       </div>

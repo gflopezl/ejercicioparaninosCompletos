@@ -57,7 +57,7 @@ function Recompensas() {
 
       <div className="mt-6 text-center">
         <button
-          onClick={() => navigate('/perfil')}
+          onClick={() => navigate('/perfilusuario')}
           className="bg-sky-400 hover:bg-sky-500 text-white px-6 py-2 rounded-xl shadow-lg"
         >
           Volver al perfil

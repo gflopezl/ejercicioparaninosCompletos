@@ -23,7 +23,7 @@ function Consejos() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-100 to-orange-100 p-6">
       <button
-        onClick={() => navigate(-1)}
+        onClick={() => navigate('/perfilusuario')}
         className="mb-4 bg-pink-300 hover:bg-pink-400 text-white px-4 py-2 rounded-full shadow transition-transform hover:scale-105"
       >
         🔙 Volver

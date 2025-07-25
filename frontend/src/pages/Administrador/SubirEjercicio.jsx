@@ -136,7 +136,7 @@ function SubirEjercicio() {
 
       {/* Botón para volver al panel */}
       <button
-        onClick={() => navigate('/admin')}
+        onClick={() => navigate('/administrador')}
         className="mt-4 w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
       >
         ⬅️ Volver al Panel de Administrador

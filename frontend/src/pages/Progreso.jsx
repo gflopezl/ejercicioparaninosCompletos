@@ -55,7 +55,7 @@ function Progreso() {
       )}
 
       {/* 🔙 Botón para volver */}
-      <button className="boton-volver" onClick={() => navigate(-1)}>⬅️ Volver</button>
+      <button className="boton-volver" onClick={() => navigate('/perfilusuario')}>⬅️ Volver</button>
     </div>
   );
 }

@@ -11,15 +11,17 @@ function PerfilUsuario() {
     const obtenerNotificaciones = async () => {
       try {
         const token = localStorage.getItem('token');
-
+        console.log('Token en localStorage:', token);
+        if (!token) {
+          console.warn('No hay token, no puedo obtener notificaciones');
+          return; // Solo salir sin navegar
+        }
         const response = await axios.get(`${backendUrl}/api/notificaciones/mis-notificaciones`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-
         const data = response.data;
-
         if (Array.isArray(data)) {
           setNotificaciones(data);
         } else if (Array.isArray(data.notificaciones)) {
@@ -46,9 +48,9 @@ function PerfilUsuario() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-br from-sky-100 to-lime-100 py-10 px-6 relative">
-      
-      {/* Botón de cerrar sesión */}
+
       <button
+        type="button"
         onClick={cerrarSesion}
         className="absolute top-6 right-6 bg-red-400 hover:bg-red-500 text-white px-4 py-2 rounded-xl shadow font-semibold text-sm transition-transform hover:scale-105"
       >
@@ -59,24 +61,28 @@ function PerfilUsuario() {
 
       <div className="grid grid-cols-2 gap-5 w-full max-w-md">
         <button
+          type="button"
           onClick={() => navigate('/ejercicios-por-edad')}
           className="bg-sky-300 hover:bg-sky-400 text-white py-3 px-4 rounded-2xl shadow-lg text-lg flex items-center justify-center gap-2"
         >
           🏃‍♂️ Ejercicios
         </button>
         <button
+          type="button"
           onClick={() => navigate('/progreso')}
           className="bg-green-300 hover:bg-green-400 text-white py-3 px-4 rounded-2xl shadow-lg text-lg flex items-center justify-center gap-2"
         >
           📈 Progreso
         </button>
         <button
+          type="button"
           onClick={() => navigate('/recompensas')}
           className="bg-yellow-300 hover:bg-yellow-400 text-white py-3 px-4 rounded-2xl shadow-lg text-lg flex items-center justify-center gap-2"
         >
           ⭐ Recompensas
         </button>
         <button
+          type="button"
           onClick={() => navigate('/consejos')}
           className="bg-purple-300 hover:bg-purple-400 text-white py-3 px-4 rounded-2xl shadow-lg text-lg flex items-center justify-center gap-2"
         >

@@ -33,43 +33,43 @@ function App() {
       {/* Usuario normal */}
       <Route
         path="/perfilusuario" element={
-          <RutaProtegida rolRequerido={['niño', 'usuario']}>
+          <RutaProtegida rolRequerido={['niño']}>
             <PerfilUsuario />
           </RutaProtegida>
         }
       />
       <Route path="/ejercicios/:ejercicioId" element={
-        <RutaProtegida rolRequerido="usuario">
+        <RutaProtegida rolRequerido="niño">
           <EjercicioWrapper />
         </RutaProtegida>
       } />
       <Route path="/ejercicios" element={
-        <RutaProtegida rolRequerido="usuario">
+        <RutaProtegida rolRequerido="niño">
           <EjerciciosPantalla />
         </RutaProtegida>
       } />
       <Route path="/ejercicios-por-edad" element={
-        <RutaProtegida rolRequerido="usuario">
+        <RutaProtegida rolRequerido="niño">
           <Ejerciciosporedad />
         </RutaProtegida>
       } />
       <Route path="/recompensas" element={
-        <RutaProtegida rolRequerido="usuario">
+        <RutaProtegida rolRequerido="niño">
           <Recompensas />
         </RutaProtegida>
       } />
       <Route path="/notificaciones" element={
-        <RutaProtegida rolRequerido="usuario">
+        <RutaProtegida rolRequerido="niño">
           <Notificaciones />
         </RutaProtegida>
       } />
       <Route path="/consejos" element={
-        <RutaProtegida rolRequerido="usuario">
+        <RutaProtegida rolRequerido="niño">
           <Consejos />
         </RutaProtegida>
       } />
       <Route path="/progreso" element={
-        <RutaProtegida rolRequerido="usuario">
+        <RutaProtegida rolRequerido="niño">
           <Progreso />
         </RutaProtegida>
       } />
@@ -80,37 +80,37 @@ function App() {
           <Administrador />
         </RutaProtegida>
       } />
-      <Route path="/admin/subir-ejercicio" element={
+      <Route path="/administrador/subir-ejercicio" element={
         <RutaProtegida rolRequerido="admin">
           <SubirEjercicio />
         </RutaProtegida>
       } />
-      <Route path="/admin/usuarios-registrados" element={
+      <Route path="/administrador/usuarios-registrados" element={
         <RutaProtegida rolRequerido="admin">
           <UsuariosRegistrados />
         </RutaProtegida>
       } />
-      <Route path="/admin/progreso" element={
+      <Route path="/administrador/progreso" element={
         <RutaProtegida rolRequerido="admin">
           <ProgresoAdmin />
         </RutaProtegida>
       } />
-      <Route path="/admin/notificaciones" element={
+      <Route path="/administrador/notificaciones" element={
         <RutaProtegida rolRequerido="admin">
           <NotificacionesAdmin />
         </RutaProtegida>
       } />
-      <Route path="/admin/categoriaadmin" element={
+      <Route path="/administrador/categoriaadmin" element={
         <RutaProtegida rolRequerido="admin">
           <CategoriaAdmin />
         </RutaProtegida>
       } />
-      <Route path="/admin/recompensas" element={
+      <Route path="/administrador/recompensas" element={
         <RutaProtegida rolRequerido="admin">
           <RecompensasAdmin />
         </RutaProtegida>
       } />
-      <Route path="/admin/consejos" element={
+      <Route path="/administrador/consejos" element={
         <RutaProtegida rolRequerido="admin">
           <ConsejosAdmin />
         </RutaProtegida>
