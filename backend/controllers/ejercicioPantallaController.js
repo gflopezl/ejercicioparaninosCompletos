@@ -1,80 +1,58 @@
 const EjercicioPantalla = require('../models/ejercicioPantalla');
-const fs = require('fs');
-const path = require('path');
 
+// Crear ejercicio
 const crearEjercicio = async (req, res) => {
   try {
-    const { nombre, descripcion, edadRecomendada, repeticiones } = req.body;
-
-    const nuevoEjercicio = new EjercicioPantalla({
-      nombre,
-      descripcion,
-      edadRecomendada,
-      repeticiones,
-      archivo: req.file ? req.file.filename : null,
-    });
-
+    const nuevoEjercicio = new EjercicioPantalla(req.body);
     await nuevoEjercicio.save();
-    res.status(201).json({ mensaje: 'Ejercicio creado con éxito', ejercicio: nuevoEjercicio });
+    res.status(201).json(nuevoEjercicio);
   } catch (error) {
-    console.error('Error al crear ejercicio:', error);
-    res.status(500).json({ error: 'Error al crear ejercicio' });
+    console.error('Error crear ejercicio:', error);
+    res.status(500).json({ mensaje: 'Error al crear ejercicio', error: error.message });
   }
 };
 
+// Obtener todos los ejercicios
 const obtenerEjercicios = async (req, res) => {
   try {
-    const ejercicios = await EjercicioPantalla.find().sort({ nombre: 1 });
+    const ejercicios = await EjercicioPantalla.find().sort({ createdAt: -1 });
     res.status(200).json(ejercicios);
   } catch (error) {
-    console.error('Error al obtener ejercicios:', error);
-    res.status(500).json({ error: 'Error al obtener ejercicios' });
+    console.error('Error obtener ejercicios:', error);
+    res.status(500).json({ mensaje: 'Error al obtener ejercicios', error: error.message });
   }
 };
 
+// Actualizar ejercicio por id
 const actualizarEjercicio = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nombre, descripcion, edadRecomendada, repeticiones } = req.body;
-    const ejercicio = await EjercicioPantalla.findById(id);
+    const updates = req.body;
+    const ejercicioActualizado = await EjercicioPantalla.findByIdAndUpdate(id, updates, { new: true });
 
-    if (!ejercicio) return res.status(404).json({ error: 'Ejercicio no encontrado' });
-
-    // Borrar archivo anterior si hay uno nuevo
-    if (req.file && ejercicio.archivo) {
-      const archivoPath = path.join(__dirname, '../uploads', ejercicio.archivo);
-      if (fs.existsSync(archivoPath)) fs.unlinkSync(archivoPath);
-      ejercicio.archivo = req.file.filename;
+    if (!ejercicioActualizado) {
+      return res.status(404).json({ mensaje: 'Ejercicio no encontrado' });
     }
 
-    ejercicio.nombre = nombre;
-    ejercicio.descripcion = descripcion;
-    ejercicio.edadRecomendada = edadRecomendada;
-    ejercicio.repeticiones = repeticiones;
-
-    await ejercicio.save();
-    res.status(200).json({ mensaje: 'Ejercicio actualizado', ejercicio });
+    res.status(200).json(ejercicioActualizado);
   } catch (error) {
-    console.error('Error al actualizar ejercicio:', error);
-    res.status(500).json({ error: 'Error al actualizar ejercicio' });
+    console.error('Error actualizar ejercicio:', error);
+    res.status(500).json({ mensaje: 'Error al actualizar ejercicio', error: error.message });
   }
 };
 
+// Eliminar ejercicio por id
 const eliminarEjercicio = async (req, res) => {
   try {
     const { id } = req.params;
-    const ejercicio = await EjercicioPantalla.findByIdAndDelete(id);
-    if (!ejercicio) return res.status(404).json({ error: 'Ejercicio no encontrado' });
-
-    if (ejercicio.archivo) {
-      const archivoPath = path.join(__dirname, '../uploads', ejercicio.archivo);
-      if (fs.existsSync(archivoPath)) fs.unlinkSync(archivoPath);
+    const eliminado = await EjercicioPantalla.findByIdAndDelete(id);
+    if (!eliminado) {
+      return res.status(404).json({ mensaje: 'Ejercicio no encontrado' });
     }
-
     res.status(200).json({ mensaje: 'Ejercicio eliminado' });
   } catch (error) {
-    console.error('Error al eliminar ejercicio:', error);
-    res.status(500).json({ error: 'Error al eliminar ejercicio' });
+    console.error('Error eliminar ejercicio:', error);
+    res.status(500).json({ mensaje: 'Error al eliminar ejercicio', error: error.message });
   }
 };
 

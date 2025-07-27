@@ -136,26 +136,29 @@ function Categoria() {
         {categorias.length === 0 ? (
           <p className="text-gray-500">No hay categorías aún.</p>
         ) : (
-          categorias.map((cat) => (
-            <div key={cat._id} className="border p-3 rounded mb-3 flex justify-between items-center">
-              <div>
-                <h3 className="font-semibold text-lg">{cat.nombre}</h3>
-                <p className="text-gray-600 text-sm">{cat.descripcion}</p>
-                <p className="text-sm italic text-gray-400">Tipo: {cat.tipo}</p>
-              </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => editarCategoria(cat)}
-                  className="bg-yellow-400 hover:bg-yellow-500 px-3 py-1 rounded text-white"
-                >
-                  ✏️ Editar
-                </button>
-                <button
-                  onClick={() => eliminarCategoria(cat._id)}
-                  className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-white"
-                >
-                  🗑️ Eliminar
-                </button>
+          categorias.map((ejer) => (
+            <div key={ejer._id} className="border p-3 rounded mb-3">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className="font-semibold text-lg">Nombre del ejercicio: {ejer.nombre}</h3>
+                  <p className="text-gray-600 text-sm">{ejer.descripcion}</p>
+                  <p className="text-sm italic text-gray-400">Tipo: {ejer.tipo}</p>
+                </div>
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => editarCategoria(ejer)}
+                    className="bg-yellow-400 hover:bg-yellow-500 px-3 py-1 rounded text-white"
+                  >
+                    ✏️ Editar
+                  </button>
+                  <button
+                    onClick={() => eliminarCategoria(ejer._id)}
+                    className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-white"
+                  >
+                    🗑️ Eliminar
+                  </button>
+                </div>
               </div>
             </div>
           ))

@@ -1,19 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const verificarToken = require('../middlewares/verificarToken');
-const Notificacion = require('../models/notificacion');
+const {
+  crearNotificacion,
+  obtenerNotificacionesAdmin,
+  obtenerNotificacionesUsuario,
+  actualizarNotificacion,
+  eliminarNotificacion
+} = require('../controllers/notificacionController');
 
-router.get('/mis-notificaciones', verificarToken, async (req, res) => {
-  try {
-    const usuarioId = req.usuarioId;
+// Rutas admin (CRUD completo)
+router.get('/', obtenerNotificacionesAdmin);
+router.post('/', crearNotificacion);
+router.put('/:id', actualizarNotificacion);
+router.delete('/:id', eliminarNotificacion);
 
-    const notificaciones = await Notificacion.find({ usuarioId }).sort({ fecha: -1 });
-
-    res.json(notificaciones);
-  } catch (error) {
-    console.error('Error al obtener notificaciones:', error);
-    res.status(500).json({ error: 'Error al obtener notificaciones' });
-  }
-});
+// Ruta para que el niño/usuario obtenga solo sus notificaciones
+router.get('/usuario', obtenerNotificacionesUsuario);
 
 module.exports = router;

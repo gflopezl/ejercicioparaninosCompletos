@@ -3,7 +3,7 @@ const Categoria = require('../models/categoria');
 // Crear categoría
 const crearCategoria = async (req, res) => {
   try {
-    const { nombre, descripcion } = req.body;
+    const { nombre, descripcion, tipo } = req.body; // Agregado 'tipo'
 
     // Verificar si la categoría existe
     const existe = await Categoria.findOne({ nombre });
@@ -11,7 +11,7 @@ const crearCategoria = async (req, res) => {
       return res.status(400).json({ error: 'La categoría ya existe' });
     }
 
-    const categoria = new Categoria({ nombre, descripcion });
+    const categoria = new Categoria({ nombre, descripcion, tipo }); // Incluye 'tipo'
     await categoria.save();
 
     res.status(201).json({ mensaje: 'Categoría creada', categoria });
@@ -36,7 +36,7 @@ const obtenerCategorias = async (req, res) => {
 const actualizarCategoria = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nombre, descripcion } = req.body;
+    const { nombre, descripcion, tipo } = req.body; // Agregado 'tipo'
 
     const categoria = await Categoria.findById(id);
     if (!categoria) {
@@ -45,6 +45,7 @@ const actualizarCategoria = async (req, res) => {
 
     categoria.nombre = nombre || categoria.nombre;
     categoria.descripcion = descripcion || categoria.descripcion;
+    categoria.tipo = tipo || categoria.tipo; // Permitir actualizar el tipo también
 
     await categoria.save();
 

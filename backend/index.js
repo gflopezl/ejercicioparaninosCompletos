@@ -45,7 +45,8 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Rutas
-app.use('/api/ejercicios-pantalla', ejercicioPantallaRoutes);
+
+app.use('/api/ejerciciopantalla', ejercicioPantallaRoutes);
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/progresos', progresoRoutes);
 app.use('/api/ejercicio-por-edad', ejercicioPorEdadRoutes);
