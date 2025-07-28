@@ -18,16 +18,9 @@ const otorgarRecompensa = async (req, res) => {
   }
 };
 
-const obtenerRecompensasPorUsuario = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const recompensas = await Recompensa.find({ usuario: id });
-    res.json(recompensas);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al obtener recompensas' });
-  }
+const obtenerRecompensasPorUsuario = async (id) => {
+  const recompensas = await Recompensa.find({ usuario: id });
+  return recompensas;
 };
 
 module.exports = {

@@ -95,7 +95,7 @@ function Categoria() {
         <input
           type="text"
           name="nombre"
-          placeholder="Nombre categoría"
+          placeholder="Nombre ejercicio"
           value={form.nombre}
           onChange={handleChange}
           className="w-full p-2 border rounded"

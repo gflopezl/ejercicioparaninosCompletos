@@ -27,17 +27,11 @@ const obtenerNotificacionesAdmin = async (req, res) => {
   }
 };
 
-// Obtener notificaciones para usuario (filtra por destinatario)
+// backend/controllers/notificacionController.js
 const obtenerNotificacionesUsuario = async (req, res) => {
   try {
-    const { usuarioId } = req.query;
-    if (!usuarioId) return res.status(400).json({ error: 'Falta usuarioId' });
-
     const notificaciones = await Notificacion.find({
-      $or: [
-        { destinatario: 'todos' },
-        { destinatario: usuarioId }
-      ]
+      destinatario: 'todos'
     }).sort({ creadaEn: -1 });
 
     res.json(notificaciones);
@@ -45,6 +39,7 @@ const obtenerNotificacionesUsuario = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 // Actualizar notificación por ID
 const actualizarNotificacion = async (req, res) => {

@@ -10,7 +10,7 @@ function Login() {
   const navigate = useNavigate();
 
   // URL del backend desde variable de entorno
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,22 +22,19 @@ function Login() {
         contraseña,
       });
 
-      console.log('Respuesta del backend:', response.data);
-
-      // Según tu respuesta: el token, rol, nombre e id están en response.data directamente
+      // Extrae los datos recibidos del backend
       const { token, rol, nombre, id } = response.data;
 
-      // Normaliza el rol para evitar problemas con mayúsculas o espacios
+      // Normaliza el rol
       const rolNormalizado = (rol || '').toLowerCase().trim();
-      console.log('Rol recibido y normalizado:', rolNormalizado);
 
-      // Guarda en localStorage
+      // Guarda los datos en localStorage
       localStorage.setItem('token', token);
       localStorage.setItem('rol', rolNormalizado);
       localStorage.setItem('usuarioId', id);
-      localStorage.setItem('nombre', nombre);
+      localStorage.setItem('nombre', nombre); // ✅ Guarda el nombre del niño/niña
 
-      // Redirige según rol
+      // Redirige según el rol
       if (rolNormalizado === 'admin') {
         navigate('/administrador');
       } else {

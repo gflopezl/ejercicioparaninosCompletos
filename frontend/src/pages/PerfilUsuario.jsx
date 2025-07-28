@@ -1,45 +1,31 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Notificaciones from './Notificaciones';
 
 function PerfilUsuario() {
   const navigate = useNavigate();
-  const [notificaciones, setNotificaciones] = useState([]);
+  const [usuario, setUsuario] = useState(null);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-  useEffect(() => {
-    const obtenerNotificaciones = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        console.log('Token en localStorage:', token);
-        if (!token) {
-          console.warn('No hay token, no puedo obtener notificaciones');
-          return; // Solo salir sin navegar
-        }
-        const response = await axios.get(`${backendUrl}/api/notificaciones/mis-notificaciones`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const data = response.data;
-        if (Array.isArray(data)) {
-          setNotificaciones(data);
-        } else if (Array.isArray(data.notificaciones)) {
-          setNotificaciones(data.notificaciones);
-        } else {
-          console.warn('Formato de notificaciones inesperado:', data);
-          setNotificaciones([]);
-        }
-      } catch (error) {
-        console.error('Error al obtener notificaciones:', error);
-        setNotificaciones([]);
-      }
-    };
+  const obtenerPerfil = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
 
-    obtenerNotificaciones();
-    const intervalo = setInterval(obtenerNotificaciones, 10000);
-    return () => clearInterval(intervalo);
-  }, [backendUrl]);
+      const res = await axios.get(`${backendUrl}/api/usuarios/perfil`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      setUsuario(res.data);
+    } catch (error) {
+      console.error('Error al obtener perfil de usuario:', error);
+    }
+  };
+
+  useEffect(() => {
+    obtenerPerfil();
+  }, []);
 
   const cerrarSesion = () => {
     localStorage.clear();
@@ -57,7 +43,9 @@ function PerfilUsuario() {
         🔓 Cerrar sesión
       </button>
 
-      <h1 className="text-4xl font-bold text-pink-600 mb-8 drop-shadow">🎉 ¡Hola, pequeño/a deportista!</h1>
+      <h1 className="text-4xl font-bold text-pink-600 mb-4 drop-shadow">
+        🎉 ¡Hola, {usuario?.nombre || 'pequeño/a deportista'}!
+      </h1>
 
       <div className="grid grid-cols-2 gap-5 w-full max-w-md">
         <button
@@ -90,22 +78,9 @@ function PerfilUsuario() {
         </button>
       </div>
 
+      {/* Aquí mostramos las notificaciones usando el componente importado */}
       <div className="mt-12 w-full max-w-md">
-        <h2 className="text-2xl font-semibold text-blue-600 mb-4">🔔 Tus notificaciones</h2>
-        <ul className="space-y-3">
-          {notificaciones.length > 0 ? (
-            notificaciones.map((n) => (
-              <li
-                key={n._id || n.id}
-                className="bg-white border-l-8 border-blue-300 p-4 rounded-xl shadow text-blue-700 font-medium"
-              >
-                📢 {n.mensaje}
-              </li>
-            ))
-          ) : (
-            <li className="text-gray-500 italic text-center">No tienes notificaciones por ahora 😊</li>
-          )}
-        </ul>
+        <Notificaciones />
       </div>
     </div>
   );
